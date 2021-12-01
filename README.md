@@ -5,10 +5,10 @@ challenge assignment for neuroflow
 submitted mood value.
 - [ ] Create a flask app
 - [ ] Create a post request endpoint for '/mood' which gets a value.
-- [ ] Create a database using docker
+- [ ] Make dockerfile
+- [ ] Setup docker-compose.yaml with database
 - [ ] Create a table in the database for mood
 - [ ] When mood value is sent to the endpoint, save it to the database
-- [ ] Setup docker-compose.yaml
 
 2. Add the ability for users to login.
 - [ ] Create an user table in the database
