@@ -1,14 +1,23 @@
 # neuroflow-challenge
 challenge assignment for neuroflow
+
+# Setup
+
+Save requirements from conda env:
+```
+pip list --format=freeze > requirements.txt
+```
 # Requirements
 1. Create a web REST application with a '/mood' endpoint, which when POSTed to persists the
 submitted mood value.
-- [ ] Create a flask app
-- [ ] Create a post request endpoint for '/mood' which gets a value.
-- [ ] Make dockerfile
-- [ ] Setup docker-compose.yaml with database
-- [ ] Create a table in the database for mood
-- [ ] When mood value is sent to the endpoint, save it to the database
+- [x] Create conda env
+- [x] Create a flask app
+- [x] Create a table in the database for mood
+- [x] Create a post request endpoint for '/mood' which gets a value.
+- [x] When mood value is sent to the endpoint, save it to the database
+- [x] Create requirements.txt
+- [x] Make dockerfile
+- [x] Setup docker-compose.yaml with database
 
 2. Add the ability for users to login.
 - [ ] Create an user table in the database
@@ -40,3 +49,18 @@ a 1-day streak for the March 5th rating.
 - [ ] To the mood table add a streak column
 - [ ] When mood is posted, and streak is 0, set streak to 1. Otherwise, if there was a mood one day ago, add 1 to the streak and save it.
 - [ ] Modify the get endpoint if necessary
+
+# Known issues
+1. 
+
+Problem:
+
+Some applications can't connect to the db with error: no pg_hba.conf entry for host
+
+Resolution:
+
+You may need into the data/pg_hda.conf and add the line 
+```
+host    all  	        all  	        0.0.0.0/0           trust
+```
+for all applications to access the db. NEVER do this in production
