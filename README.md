@@ -3,6 +3,12 @@ challenge assignment for neuroflow
 
 # Setup
 
+Install docker. Then run
+```
+docker-compose up --build --remove-orphans
+```
+The backend will be running on localhost:5010
+
 Save requirements from conda env:
 ```
 pip list --format=freeze > requirements.txt
