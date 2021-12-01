@@ -8,7 +8,7 @@ Modified By: modifier
 from neuroflow.extensions import db
 import datetime
 class Mood(db.Model):
-    __tablename__ = 'user'
+    __tablename__ = 'mood'
     id = db.Column(db.Integer, primary_key=True)
-    mood = db.Column(db.Number)
+    mood = db.Column(db.Float)
     created_date = db.Column(db.DateTime, default=datetime.datetime.utcnow)

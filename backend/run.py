@@ -17,7 +17,6 @@ if __name__ == "__main__":
             app.run(debug=True, host='0.0.0.0', port=app.config['PORT'])
 
         elif app.config['ENV'] == 'production':
-            # app = Talisman(app)
             serve(
                 app,
                 host='0.0.0.0',
@@ -25,4 +24,4 @@ if __name__ == "__main__":
                 max_request_body_size=10737418240
             )
     except Exception as e:
-        logging.info(e)
+        print(e)

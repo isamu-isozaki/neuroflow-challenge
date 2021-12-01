@@ -16,6 +16,10 @@ def create_app():
 
     register_extensions(app)
     register_blueprints(app)
+    if app.config['ENV'] == 'development':
+        with app.app_context():
+            db.drop_all()
+            db.create_all()
 
     return app
     
