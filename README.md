@@ -3,8 +3,10 @@ challenge assignment for neuroflow
 # Requirements
 1. Create a web REST application with a '/mood' endpoint, which when POSTed to persists the
 submitted mood value.
+- [ ] Create conda env
 - [ ] Create a flask app
 - [ ] Create a post request endpoint for '/mood' which gets a value.
+- [ ] Create requirements.txt
 - [ ] Make dockerfile
 - [ ] Setup docker-compose.yaml with database
 - [ ] Create a table in the database for mood
