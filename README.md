@@ -32,7 +32,7 @@ submitted mood value.
 - [ ] Create a create user endpoint given username and password
 - [ ] Create a login endpoint given username and password and generates a token
 - [ ] To the /mood endpoint, add a token parameter in the header
-- [ ] Create a react app
+- [x] Create a react app
 - [ ] Create api.js for posting to mood, creating user, and logging in
 - [ ] Create basic redux setup to store information
 - [ ] Create ui for login/signup
