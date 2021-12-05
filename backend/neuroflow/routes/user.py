@@ -13,9 +13,9 @@ import binascii
 
 
 blueprint = Blueprint('user', __name__, 
-                            url_prefix='/')
+                            url_prefix='/user')
 
-@blueprint.route('/get_token', methods=['POST'])
+@blueprint.route('/get_token')
 def get_token():
     try:
         request_json = request.get_json()

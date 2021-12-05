@@ -20,23 +20,22 @@ def authorized():
             if not request.headers.get('Authorization', None):
                 return 'Unauthorized', 401
             
-            is_authorized = get_authorized(request)
-            if not is_authorized:
+            user = get_authorized(request)
+            if not user:
                 return 'Unauthorized', 401
-            return f(*args, **kwargs)
+            return f(user, *args, **kwargs)
     
         return wrap
     return authorized_decorator
 
 @blueprint.route('/', methods=['POST'])
 @authorized()
-def mood_processing():
-    """
-    """
+def mood_processing(user):
+    print(user)
     try:
         request_json = request.get_json()
         mood = float(request_json['mood'])
-        create_mood(mood)
+        create_mood(mood, user)
     except Exception as e:
         print(e)
         return "Invalid request.", 400

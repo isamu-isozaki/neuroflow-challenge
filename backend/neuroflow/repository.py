@@ -44,7 +44,6 @@ def save_token(token):
     tok = Token(
         access_token=token['access_token'],
         refresh_token=token['refresh_token'],
-        _scopes=token['scopes'],
         expires=expires,
         user_id=token['user_id'],
     )
@@ -61,4 +60,4 @@ def get_authorized(request):
         return False
     if token.expires < datetime.utcnow():
         return False
-    return True
+    return token.user

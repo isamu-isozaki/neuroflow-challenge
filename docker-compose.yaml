@@ -28,4 +28,6 @@ services:
       - DB_HOST=db
       - FLASK_PORT=5010
       - DB=postgresql://postgres_user:postgres_pass@db:5432/postgres
+      - FLASK_ENV=development
+      - PEPPER=pepper
     restart: unless-stopped
