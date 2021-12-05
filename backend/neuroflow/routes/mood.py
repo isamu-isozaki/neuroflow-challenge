@@ -7,12 +7,29 @@ Modified By: modifier
 """
 
 from flask import Blueprint, redirect, jsonify, url_for, request
-from neuroflow.repository import create_mood
+from neuroflow.repository import create_mood, get_authorized
+from functools import wraps
 
 blueprint = Blueprint('mood', __name__, 
                             url_prefix='/mood')
 
+def authorized():
+    def authorized_decorator(f):
+        @wraps(f)
+        def wrap(*args, **kwargs):
+            if not request.headers.get('Authorization', None):
+                return 'Unauthorized', 401
+            
+            is_authorized = get_authorized(request)
+            if not is_authorized:
+                return 'Unauthorized', 401
+            return f(*args, **kwargs)
+    
+        return wrap
+    return authorized_decorator
+
 @blueprint.route('/', methods=['POST'])
+@authorized()
 def mood_processing():
     """
     """
