@@ -7,7 +7,7 @@ Modified By: modifier
 """
 
 from flask import Blueprint, redirect, jsonify, url_for, request
-from neuroflow.repository import create_mood, get_authorized
+from neuroflow.repository import create_mood, get_authorized, load_moods_from_user
 from functools import wraps
 from flask_cors import cross_origin
 
@@ -21,7 +21,6 @@ def authorized():
             if not request.headers.get('Authorization', None):
                 return 'Unauthorized', 401
             user = get_authorized(request)
-            print(user)
             if not user:
                 return 'Unauthorized', 401
             return f(user, *args, **kwargs)
@@ -29,19 +28,22 @@ def authorized():
         return wrap
     return authorized_decorator
 
-@blueprint.route('', methods=['POST'])
+@blueprint.route('', methods=['POST', 'GET'])
 @cross_origin()
 @authorized()
 def mood_processing(user):
-    try:
-        request_json = request.get_json()
-        mood_val = float(request_json['mood'])
-        assert 0 <= mood_val <= 10
-        mood = create_mood(mood_val, user)
-    except Exception as e:
-        print(e)
-        return "Invalid request.", 400
-    print(mood)
-    del mood['_sa_instance_state']
-    del mood['user']
-    return jsonify({'mood': mood})
+    if request.method == 'POST':
+        try:
+            request_json = request.get_json()
+            mood_val = float(request_json['mood'])
+            assert 0 <= mood_val <= 10
+            mood = create_mood(mood_val, user)
+        except Exception as e:
+            print(e)
+            return "Invalid request.", 400
+        del mood['_sa_instance_state']
+        del mood['user']
+        return jsonify({'mood': mood})
+    else:
+        moods = load_moods_from_user(user)
+        return jsonify({'moods': moods})

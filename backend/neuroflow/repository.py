@@ -35,6 +35,15 @@ def load_token(access_token=None, refresh_token=None):
     if access_token:
         return Token.query.filter_by(access_token=access_token).first()
 
+def load_moods_from_user(user):
+    moods = db.session.query(Mood).filter_by(user=user).all()
+    mood_dicts = []
+    for mood in moods:
+        mood = mood.__dict__.copy()
+        del mood['_sa_instance_state']
+        mood_dicts.append(mood)
+    return mood_dicts
+
 def save_token(token):
     toks = Token.query.filter_by(user_id=token['user_id'])
     # make sure that every client has only one token connected to a user
@@ -56,14 +65,11 @@ def save_token(token):
 
 def get_authorized(request):
     if not request.headers.get('Authorization', None):
-        print('invalid header')
         return False
     access_token = request.headers['Authorization']
     token = load_token(access_token=access_token)
     if not token:
-        print('no token')
         return False
     if token.expires < datetime.utcnow():
-        print('token expired')
         return False
     return token.user

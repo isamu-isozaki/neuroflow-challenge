@@ -39,7 +39,7 @@ submitted mood value.
 - [x] Create ui for posting mood
 3. Create a '/mood' endpoint with a GET method, returning all values submitted by the logged-in
 user.
-- [ ] Create get mood endpoint
+- [x] Create get mood endpoint
 - [ ] Add to api.js
 - [ ] Add to redux
 - [ ] Add to ui

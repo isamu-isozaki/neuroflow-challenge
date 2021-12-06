@@ -23,7 +23,6 @@ def get_token():
     except:
         return "Invalid request. Send a POST request with valid payload or check the documentation", 400
     user = load_user_from_email(email)
-    print(user)
     if not user or not user.check_password(password):
         return "Invalid credentials", 401
     token = save_token({
