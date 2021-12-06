@@ -17,7 +17,9 @@ function Mood({
 }) {
     const [nextMood, setNextMood] = useState(0)
     const moodElems = moods.map(mood => {
-        return <Text key={mood.id}>{mood.mood}</Text>
+        return (
+            <Text key={mood.id}>mood: {mood.mood} streak: {mood.streak}</Text>
+        )
     })
     return (
         <Flex direction='column' justify='center' align='center' height='100%'>
