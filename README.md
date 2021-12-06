@@ -3,6 +3,12 @@ challenge assignment for neuroflow
 
 # Setup
 
+Install docker. Then run
+```
+docker-compose up --build --remove-orphans
+```
+The backend will be running on localhost:5010
+
 Save requirements from conda env:
 ```
 pip list --format=freeze > requirements.txt
@@ -20,17 +26,17 @@ submitted mood value.
 - [x] Setup docker-compose.yaml with database
 
 2. Add the ability for users to login.
-- [ ] Create an user table in the database
-- [ ] Create a token table for a token for each user
-- [ ] Add user relationship with the mood table
-- [ ] Create a create user endpoint given username and password
-- [ ] Create a login endpoint given username and password and generates a token
-- [ ] To the /mood endpoint, add a token parameter in the header
-- [ ] Create a react app
-- [ ] Create api.js for posting to mood, creating user, and logging in
-- [ ] Create basic redux setup to store information
-- [ ] Create ui for login/signup
-- [ ] Create ui for posting mood
+- [x] Create an user table in the database
+- [x] Create a token table for a token for each user
+- [x] Add user relationship with the mood table
+- [x] Create a create user endpoint given username and password
+- [x] Create a login endpoint given username and password and generates a token
+- [x] To the /mood endpoint, add a token parameter in the header
+- [x] Create a react app
+- [x] Create api.js for posting to mood, creating user, and logging in
+- [x] Create basic redux setup to store information
+- [x] Create ui for login/signup
+- [x] Create ui for posting mood
 3. Create a '/mood' endpoint with a GET method, returning all values submitted by the logged-in
 user.
 - [ ] Create get mood endpoint
