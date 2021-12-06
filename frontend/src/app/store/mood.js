@@ -54,7 +54,6 @@ export function loadMoods() {
             const { token } = getState().auth
             const payload = await getMoods(token)
             const { moods } = payload
-            console.log({moods})
             dispatch({ type: LOAD_MOODS_SUCCESS, payload: { moods } });
         }
         catch (e) {

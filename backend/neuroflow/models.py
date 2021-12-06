@@ -75,6 +75,7 @@ class Mood(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mood = db.Column(db.Float)
     created_date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    streak=db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User')
 

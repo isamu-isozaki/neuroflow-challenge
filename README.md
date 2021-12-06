@@ -40,9 +40,9 @@ submitted mood value.
 3. Create a '/mood' endpoint with a GET method, returning all values submitted by the logged-in
 user.
 - [x] Create get mood endpoint
-- [ ] Add to api.js
-- [ ] Add to redux
-- [ ] Add to ui
+- [x] Add to api.js
+- [x] Add to redux
+- [x] Add to ui
 4. Add to the body of the response for the ‘/mood’ endpoint the length of their current "streak".
 
 A user is on a “streak” if that user has submitted at least 1 mood rating for each
@@ -52,9 +52,9 @@ For example, if on March 1st, March 2nd, March 3rd, and March 5th the user enter
 mood ratings, a 3-day streak will apply to the March 3rd rating and the streak will reset to
 a 1-day streak for the March 5th rating.
 
-- [ ] To the mood table add a streak column
-- [ ] When mood is posted, and streak is 0, set streak to 1. Otherwise, if there was a mood one day ago, add 1 to the streak and save it.
-- [ ] Modify the get endpoint if necessary
+- [x] To the mood table add a streak column
+- [x] When mood is posted, and streak is 0, set streak to 1. Otherwise, if there was a mood one day ago, add 1 to the streak and save it.
+- [ ] Have ui
 
 # Known issues
 1. 

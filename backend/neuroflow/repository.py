@@ -8,11 +8,13 @@ Modified By: modifier
 from neuroflow.models import Mood, User, Token
 from neuroflow.extensions import db
 from datetime import datetime, timedelta
+from sqlalchemy import and_
+
 def create_mood(mood_num, user):
     """
     Create a mood object
     """
-    mood = Mood(mood=mood_num, user=user)
+    mood = Mood(mood=mood_num, user=user, streak=previous_streak(user)+1)
     db.session.add(mood)
     db.session.flush()
     mood_dict = mood.__dict__.copy()
@@ -43,6 +45,14 @@ def load_moods_from_user(user):
         del mood['_sa_instance_state']
         mood_dicts.append(mood)
     return mood_dicts
+
+def previous_streak(user):
+    one_day_before = datetime.utcnow() - timedelta(days=1)
+    two_days_before = datetime.utcnow() - timedelta(days=2)
+    mood_one_day_ago = db.session.query(Mood).filter(Mood.user==user).filter(and_(Mood.created_date >= two_days_before, Mood.created_date <=one_day_before)).first()
+    if mood_one_day_ago:
+        return mood_one_day_ago.streak
+    return 0
 
 def save_token(token):
     toks = Token.query.filter_by(user_id=token['user_id'])
