@@ -10,4 +10,7 @@ import api from './index';
 export function postMood(mood, token) {
     return api.post('/mood',{mood}, {headers: {Authorization: token}});
 }
-  
+
+export function getMoods(token) {
+    return api.post('/mood',{headers: {Authorization: token}});
+}
