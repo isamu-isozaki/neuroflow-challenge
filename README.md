@@ -11,7 +11,7 @@ The backend will be running on localhost:5010 and the frontend on localhost:5000
 
 If you want to run frontend separately, look at the Running frontend separately section below.
 
-If running into issues, please check the Known issues at the very bottom!
+If running into issues, please check the Known issues at the very bottom! Also, it's recommended for now to separate out the frontend from docker-compose so do follow the directions in the Running frontend separately section.
 
 # How to use
 
