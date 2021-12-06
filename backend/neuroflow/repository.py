@@ -65,14 +65,11 @@ def save_token(token):
 
 def get_authorized(request):
     if not request.headers.get('Authorization', None):
-        print('invalid header')
         return False
     access_token = request.headers['Authorization']
     token = load_token(access_token=access_token)
     if not token:
-        print('no token')
         return False
     if token.expires < datetime.utcnow():
-        print('token expired')
         return False
     return token.user

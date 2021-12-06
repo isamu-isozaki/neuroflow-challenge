@@ -21,7 +21,6 @@ def authorized():
             if not request.headers.get('Authorization', None):
                 return 'Unauthorized', 401
             user = get_authorized(request)
-            print(user)
             if not user:
                 return 'Unauthorized', 401
             return f(user, *args, **kwargs)

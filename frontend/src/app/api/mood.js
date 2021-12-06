@@ -12,5 +12,5 @@ export function postMood(mood, token) {
 }
 
 export function getMoods(token) {
-    return api.post('/mood',{headers: {Authorization: token}});
+    return api.get('/mood',{headers: {Authorization: token}});
 }
