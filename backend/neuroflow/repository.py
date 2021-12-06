@@ -14,7 +14,10 @@ def create_mood(mood_num, user):
     """
     mood = Mood(mood=mood_num, user=user)
     db.session.add(mood)
+    db.session.flush()
+    mood_dict = mood.__dict__.copy()
     db.session.commit()
+    return mood_dict
 
 def create_user(email, first_name, last_name, password):
     user = load_user_from_email(email)
@@ -23,7 +26,7 @@ def create_user(email, first_name, last_name, password):
     user = User(email=email, first_name=first_name, last_name=last_name, password=password)
     db.session.add(user)
     db.session.commit()
-    return True
+    return user
 
 def load_user_from_email(email):
     return db.session.query(User).filter_by(email=email).first()
@@ -53,11 +56,14 @@ def save_token(token):
 
 def get_authorized(request):
     if not request.headers.get('Authorization', None):
-        return
+        print('invalid header')
+        return False
     access_token = request.headers['Authorization']
     token = load_token(access_token=access_token)
     if not token:
+        print('no token')
         return False
     if token.expires < datetime.utcnow():
+        print('token expired')
         return False
     return token.user

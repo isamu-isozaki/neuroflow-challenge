@@ -3,6 +3,8 @@ from flask import Flask
 from dotenv import load_dotenv
 from neuroflow.routes import user, mood
 from neuroflow.extensions import db
+import os
+from flask_cors import CORS 
 
 def create_app():
     load_dotenv()
@@ -13,7 +15,8 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     app.config['PORT'] = os.getenv('FLASK_PORT')
-
+    cors = CORS(app, resources={r"/*": {"origins": os.getenv('FRONTEND_URL')}})
+    app.config['CORS_HEADERS'] = 'Content-Type'
     register_extensions(app)
     register_blueprints(app)
     if app.config['ENV'] == 'development':

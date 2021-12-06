@@ -60,7 +60,6 @@ class User(db.Model, UserMixin):
 
         pepper = os.getenv('PEPPER')
         seasoned = val + salt.salt + pepper
-
         return seasoned, salt
 
 class Salt(db.Model):
